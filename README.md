@@ -2,30 +2,28 @@
 
 
 # Project Overview 
-Help Me with ADHD is an app to help someone with ADHD get better control of their time. The application does this with three different methods. The timer function can help by breaking a task into chunks and allowing the user to take breaks when trying to finish. A tasks tracker, 
+Help Me with ADHD is an app to help someone with ADHD get better control of their time. The application does this with three different methods. The timer function can help by breaking a task into chunks and allowing the user to take breaks when trying to finish. A tasks tracker, that list all current tasks a user is working on with a due date for each. Finally a reporting function. Reports help a user determine how often they are completing tasks by the due date and the amount of tasks that are being completed. 
 
-An in-depth paragraph about your project and overview of use.
+
 Getting Started
 # Dependencies
-The app is currently using 
-Express-JS - For middleware and API
-NodeJS - Backend 
-Javascript - Front End 
+The app is currently using <br/>
+Express-JS - For middleware and API <br/>
+NodeJS - Backend  <br/>
+Javascript - Front End  <br/>
 MongoDB - Keeping track of tasks and reporting 
 
-    Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-    ex. Windows 10
+# How to install 
+ under construction
+ 
+# Basic Usage
+See the service layer document in the design documents section
 
-Installing
+# Credits
+Andrew Unbehend
 
-    How/where to download your program
-    Any modifications needed to be made to files/folders
+# Licensing 
+Licence to be determined later, code is free to use as is currently 
 
-Executing program
-
-    How to run the program
-    Step-by-step bullets
-
-code blocks for commands
-
-Help
+# How to Contribute to the Project
+The project is currently in the MVP stage and is not accepting outside pull requests. Code Review is welcome and appreciated

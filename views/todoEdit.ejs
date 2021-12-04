@@ -1,0 +1,38 @@
+<html lang="en">
+<%- include("./partials/headers.ejs") %>
+
+<body>
+    <%- include("./partials/navbar.ejs") %>
+    <div class="inProgress-container">
+        <h2>In Progress</h2>
+        <div class="inProgress">
+            <form action="" method="POST" class="inProgress-header">
+                <input type="text" name="content">
+                <button type="submit"><span class="fas fa-plus"></span>
+            </button>
+        </form>
+        <ul class="inProgress-list">
+                    <% todoTasks.forEach(details => { %>
+                        <% if (details._id == idTask) { %>
+                            <li class="inProgress-list-item">
+                                <form action="/edit/<%= details._id %>" method="POST">
+                                    <input type="text" value="<%= details.content %>" name="content">
+                                    <button type="submit">Confirm</button><a href="/" class="cancel">Cancel</a>
+                                </form>
+                            </li>
+                            <% } else { %>
+                                <li class="inProgress-list-item">
+                                    <div class="inProgress-list-item-name">
+                                        <%= details.content %>
+                                    </div><a href="/edit/<%= details._id %>" class="edit"> 
+                                        <span class="fas fa-edit"></span></a>
+                                        <a href="/remove/<%= details._id %>" class="remove"> 
+                                            <span class="fas fa-times"></span>
+                                        </a>
+                                    </li>
+                                    <% } %>
+                                    <% }) %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </body>

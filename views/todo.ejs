@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<%- include("./partials/headers.ejs") %>
+
+<body>
+    <%- include("./partials/navbar.ejs") %>
+    <div class="inProgress-container">
+        <h2>In Progress</h2>
+        <div class="inProgress">
+            <form action="/" method="POST" class="inProgress-header">
+                <input type="text" name="content">
+                <button type="submit" class="btn btn-primary"> "submit"
+                </button>
+            </form>
+            <ul class="inProgress-list">
+                <% todoTasks.forEach(details => { %>
+                <li class="inProgress-list-item">
+                    <div class="inProgress-list-item-name"><%= details.content %></div>
+                    <a href="/edit/<%= details._id %>" class="edit">
+                        <span class="fas fa-edit"></span>
+                    </a>
+                    <a href="/remove/<%= details._id %>" class="remove">
+                        <span class="fas fa-trash"></span>
+                    </a>
+                    <a href="/done/<%= details._id %>" class="done">
+                        <span class="fas fa-check-circle"></span>
+                    </a>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+</body>

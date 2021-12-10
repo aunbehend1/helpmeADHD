@@ -4,7 +4,7 @@ const mongoose=require('mongoose');
 const dotenv = require('dotenv')
 const passport = require('passport')
 const session = require('express-session')
-const MongoStore = require('connect-mongo')(session)
+const MongoStore = require("connect-mongo");
 const TodoTask = require("./models/TodoTask");
 
 
@@ -37,7 +37,7 @@ app.use(
       secret: 'scotchscotchscotchIlovescotch',
       resave: false,
       saveUninitialized: false,
-      store: new MongoStore({ mongooseConnection: mongoose.connection }),
+      store: MongoStore.create({mongoUrl:process.env.MONGO_URI}),
     })
   )
 

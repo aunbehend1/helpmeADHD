@@ -13,7 +13,7 @@ app.use('/static', express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 
-const PORT = process.env.PORT||3000;
+const PORT = process.env.PORT||8080;
 dotenv.config({ path: './config/config.env' })
 
 mongoose.connect(process.env.MONGO_URI,{

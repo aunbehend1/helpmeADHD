@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
 
-//create date and updated date are handled with timestamps:true
-
 const todoTaskSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
     content: {
         type: String,
         required: true
     },
-
-    taskComplete: {
-        type: Boolean 
-    },
-}, { timestamps: true });
-
+    date: {
+        type: Date,
+        default: Date.now
+    }}
+    )
     
 module.exports = mongoose.model('TodoTask',todoTaskSchema);

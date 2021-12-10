@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<title>Example Login Form</title>
-  </head>
-  <body>
-	<div class = "login" style="width: 100px; float:left; height:100px; background:gray; margin:10px">
-    <form action="localhost/login" method="post">
-  	  <!-- user input-->
-  	  Username:<br>
-  	  <input type="text" name="username" placeholder="Username" required><br><br>
-  	  Password:<br>
-  	  <input type="password" name="password" placeholder="Password" required><br><br>
-  	  <!-- submit button -->
-  	  <input type="submit" value="login">
-	</form>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+        integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="container login-container">
+        <div class="card" style="margin-top:100px;">
+            <div class="card-content">
+                <h3 style="text-align: center;"><i class="fas fa-brain"></i>&nbsp;Help Me with ADHD</h3>
+                <div class="section">
+                    <p class="lead" style="text-align: center;">Welcome to Help ME with ADHD, an app to help with time management</p>
+                </div>
+                <div class="divider"></div>
+                <div class="section" style="text-align: center;">
+                    <a href="/auth/google" class="btn red darken-1">
+                        <i class="fab fa-google left"></i> Log In With Google
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class = "registerUser" style="width: 100px; float:left; height:100px; background:gray; margin:10px">
-        <form action="localhost/register" method="post">
-            Username:<br>
-            <input type="text" name="registerUser" placeholder="newUser" required><br><br>
-            Password: 
-            <input type="text" name="registerPassword" placeholder="newPassword" required><br><br>
-            Email: 
-            <input type="text" name="registerEmail" place="newEmail" required><br><br>
-            <input type = "submit" value="register"> 
-            <button value="cancel"></button>
-        </form>
-    </div>
-  </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
 </html>

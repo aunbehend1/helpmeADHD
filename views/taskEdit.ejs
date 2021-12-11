@@ -12,7 +12,7 @@
             </button>
         </form>
         <ul class="inProgress-list">
-                    <% todoTasks.forEach(details => { %>
+                    <% helpmeTasks.forEach(details => { %>
                         <% if (details._id == idTask) { %>
                             <li class="inProgress-list-item">
                                 <form action="/edit/<%= details._id %>" method="POST">
@@ -29,9 +29,7 @@
                                         <a href="/remove/<%= details._id %>" class="remove"> 
                                             <span class="fas fa-times"></span>
                                         </a>
-                                        <a href="/done/<%= details._id %>" class="done">
-                                            <span class="fas fa-check-circle"></span>
-                                        </a>
+                                    
                                     </li>
                                     <% } %>
                                     <% }) %>

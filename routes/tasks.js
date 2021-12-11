@@ -2,24 +2,25 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const {ensureAuthenticated} = require('../helpers/auth');
-const Tasks = require("../models/TodoTask")
+const helpMeTask = require('../models/helpMeTask');
+const Tasks = require("../models/helpMeTask")
 
 
 app.get("/tasks/incomplete", (req, ensureAuthenticated, res) => {
-        Todo.find({user: req.user.id}).then(todos => {
-          res.render('todoEdit.ejs', {
-            todos:todos
+        Tasks.find({user: req.user.id}).then(tasks => {
+          res.render('tasksEdit.ejs', {
+            tasks:tasks
           })
         }) // find something in DB
       });
 
 
   app.post('/', async (req, res) => { 
-    const todoTask = new TodoTask({
+    const helpMeTask = new helpMeTask({
         content: req.body.content
     });
         try {
-            await todoTask.save();
+            await helpMeTask.save();
             res.redirect("/tasks");
         } catch (err) {
             res.redirect("/tasks");
@@ -30,15 +31,15 @@ app.get("/tasks/incomplete", (req, ensureAuthenticated, res) => {
   
   app.route("/edit/:id").get((req, res) => {
     const id = req.params.id;
-    TodoTask.find({}, 
+    helpMeTask.find({}, 
         (err, tasks) => {
-            res.render("todoEdit.ejs", { 
-                todoTasks: tasks, idTask: id 
+            res.render("taskEdit.ejs", { 
+                helpmeTasks: tasks, idTask: id 
             });
         });
     }).post((req, res) => {
         const id = req.params.id;
-        TodoTask.findByIdAndUpdate(id, { content: req.body.content }, err => {
+        helpMeTask.findByIdAndUpdate(id, { content: req.body.content }, err => {
             if (err) return res.send(500, err);res.redirect("/tasks");
         });
     });
@@ -46,7 +47,7 @@ app.get("/tasks/incomplete", (req, ensureAuthenticated, res) => {
   //DELETE
   app.route("/remove/:id").get((req, res) => {
     const id = req.params.id;
-    TodoTask.findByIdAndRemove(id, err => {
+    helpMeTask.findByIdAndRemove(id, err => {
         if (err) return res.send(500, err);
         res.redirect("/tasks");
     });

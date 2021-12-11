@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require("connect-mongo");
-const TodoTask = require("./models/TodoTask");
+const helpMeTask = require("./models/helpMeTask");
 
 
 app.use('/static', express.static("public"));
@@ -54,17 +54,17 @@ app.get('/reports', (req,res) => {
 });
 
 app.get("/tasks", (req, res) => {
-  TodoTask.find({}, (err, tasks) => {
-      res.render("todo.ejs", { todoTasks: tasks });
+  helpMeTask.find({}, (err, tasks) => {
+      res.render("tasks.ejs", { helpmeTasks: tasks });
   });
 });
 
 app.post('/', async (req, res) => { 
-  const todoTask = new TodoTask({
+  const helpMeTask = new helpMeTask({
       content: req.body.content
   });
       try {
-          await todoTask.save();
+          await helpMeTask.save();
           res.redirect("/tasks");
       } catch (err) {
           res.redirect("/tasks");
@@ -75,15 +75,15 @@ app.post('/', async (req, res) => {
 
 app.route("/edit/:id").get((req, res) => {
   const id = req.params.id;
-  TodoTask.find({}, 
+  helpMeTask.find({}, 
       (err, tasks) => {
-          res.render("todoEdit.ejs", { 
-              todoTasks: tasks, idTask: id 
+          res.render("taskEdit.ejs", { 
+              helpmeTasks: tasks, idTask: id 
           });
       });
   }).post((req, res) => {
       const id = req.params.id;
-      TodoTask.findByIdAndUpdate(id, { content: req.body.content }, err => {
+      helpMeTask.findByIdAndUpdate(id, { content: req.body.content }, err => {
           if (err) return res.send(500, err);
           res.redirect("/tasks");
       });
@@ -92,7 +92,7 @@ app.route("/edit/:id").get((req, res) => {
 //DELETE
 app.route("/remove/:id").get((req, res) => {
   const id = req.params.id;
-  TodoTask.findByIdAndRemove(id, err => {
+  helpMeTask.findByIdAndRemove(id, err => {
       if (err) return res.send(500, err);
       res.redirect("/tasks");
   });
@@ -100,15 +100,15 @@ app.route("/remove/:id").get((req, res) => {
 
 app.route("/edit/:id").get((req, res) => {
   const id = req.params.id;
-  TodoTask.find({}, 
+  helpMeTask.find({}, 
       (err, tasks) => {
-          res.render("todoEdit.ejs", { 
-              todoTasks: tasks, idTask: id 
+          res.render("taskEdit.ejs", { 
+              helpmeTasks: tasks, idTask: id 
           });
       });
   }).post((req, res) => {
       const id = req.params.id;
-      TodoTask.findByIdAndUpdate(id, { content: req.body.content }, err => {
+      helpMeTask.findByIdAndUpdate(id, { content: req.body.content }, err => {
           if (err) return res.send(500, err);res.redirect("/");
       });
   });
@@ -116,18 +116,19 @@ app.route("/edit/:id").get((req, res) => {
 //DELETE
 app.route("/remove/:id").get((req, res) => {
   const id = req.params.id;
-  TodoTask.findByIdAndRemove(id, err => {
+  helpMeTask.findByIdAndRemove(id, err => {
       if (err) return res.send(500, err);
       res.redirect("/");
   });
 });
 
-app.route("/done/:_id").get((req, res) => {
+app.route("/done/:id").get((req, res, next) => {
   const id = req.params.id; 
-  TodoTask.updateOne({id,  taskComplete:true})
+  helpMeTask.findOneAndUpdate({id,  taskComplete:true, completedDate: Date.now()})
   .then(()=>{
       console.log("task completed")
       res.redirect('/')
+      next()
   })
   .catch((err)=>console.log(err));
 });

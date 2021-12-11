@@ -7,8 +7,7 @@ router.get('/', ensureGuest ,(req, res) => {
   })
 
   router.get("/log",ensureAuth, async(req,res)=>{
-    // const alldata =await Todo_model.find();
-    const user=await TodoTask.find({email_:req.user.email});
-    res.render('index',{todo:user,userinfo:req.user})
+    const user=await helpMeTask.find({email_:req.user.email});
+    res.render('index',{task:user,userinfo:req.user})
 })
 module.exports=router;
